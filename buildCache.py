@@ -88,13 +88,14 @@ def create_cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num
         return create_set_associative_cache(nominal_size, words_per_block, number_blocks)
 
 # Add blocks to cache, each block is a list
-def input_block_in_cache(cache):
-    # if typeC == 0: # Direct Mapped
-    typeC = cache.cache_type
-    if typeC == 0:
-        return
-    elif typeC == 1: # Set Associative
-        return
+def input_block_in_cache(cache, block):
+    # # if typeC == 0: # Direct Mapped
+    # typeC = cache.cache_type
+    # if typeC == 0:
+    #     return
+    # elif typeC == 1: # Set Associative
+    #     return
+    cache.input_block_in_cache(block)
 
 class Cache:
     def __init__(self, cache_type, size, words_per_block, num_blocks, num_ways, num_sets, cache):
@@ -105,6 +106,12 @@ class Cache:
         self.num_ways = num_ways
         self.num_sets = num_sets
         self.cache = cache
+
+    def input_block_in_cache(self, block):
+        if self.cache_type == 0:
+            return
+        else:
+            return 
 
     def __str__(self):
         return f"Cache Type: {self.cache_type}, Size: {self.size}, Words per Block: {self.words_per_block}, Number of Blocks: {self.num_blocks}, Number of Ways: {self.num_ways}, Number of Sets: {self.num_sets}"
