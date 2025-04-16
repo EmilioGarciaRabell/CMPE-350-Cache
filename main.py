@@ -4,7 +4,7 @@ import buildCache
 def promt_word_address(cache):
     address = input("Enter Word Address, c(lear), q(uit): ")
     if address == "c":
-        cache = clear(cache)
+        cache = cache.clear()
         return cache
     elif address == 'q':
         return 0
