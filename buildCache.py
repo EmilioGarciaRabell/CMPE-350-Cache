@@ -51,13 +51,14 @@ def start():
     typeC = determine_mapping_policy()
 
     # Determine number of blocks or ways based on mapping policy
+    num_blocks = calculateSize.numBlocks(nominal_size, words_per_block)
     if typeC == 0: # Direct Mapped
-        num_blocks = calculateSize.numBlocks(nominal_size, words_per_block)
+        
         num_ways = -1
         num_sets = -1
     else: # Set Associative
         num_ways = promt_number_ways()
-        num_blocks = math.floor(calculateSize.numBlocks(nominal_size, words_per_block) / num_ways)
+        num_blocks = math.floor(num_blocks / num_ways)
         num_sets = calculateSize.numSets(num_blocks, num_ways, typeC)
 
     # Create cache based on mapping policy
@@ -65,8 +66,8 @@ def start():
 
 
 def create_cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num_sets):
-    number_blocks = calculateSize.numBlocks(nominal_size, words_per_block)
-    cache = Cache(typeC, nominal_size, words_per_block, number_blocks, num_ways, num_sets, None)
+    
+    cache = Cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num_sets, None)
     cache.create_cache
     return cache
 
@@ -120,9 +121,9 @@ class Cache:
                 self.cache.append([])
                 for i in range(self.num_sets):
                     self.cache[i].append(-1)
-            
+           # self.num_sets = calculateSize.numSets(self.num_blocks, self.num_ways, self.cache_type)
     def clear_cache(self):
-        return
+        self.create_cache()
 
     def __str__(self):
         return f"Cache Type: {self.cache_type}, Size: {self.size}, Words per Block: {self.words_per_block}, Number of Blocks: {self.num_blocks}, Number of Ways: {self.num_ways}, Number of Sets: {self.num_sets}"
