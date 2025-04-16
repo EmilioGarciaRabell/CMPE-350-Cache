@@ -11,9 +11,10 @@ def numSets(numBlocks, N, typeC):
         return numBlocks / N
     return -1    
 
+# numBlocks has to be numSets for the Set associative case
 # typeC = 0 for Direct mapped and 1 for N-way
 # Returns tuple [size(tag), size(index), size(offset)]
-def addressType(wordsPerBlock, numBlocks, typeC):
+def addressType(wordsPerBlock, numBlocks):
     indexSize = math.log2(numBlocks)
     offsetSize = wordsPerBlock * 4
     tagSize = 32 - indexSize - offsetSize
