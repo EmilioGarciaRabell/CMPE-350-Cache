@@ -2,13 +2,13 @@ import math
 
 # Returns integer
 def numBlocks(cacheSize, wordsPerBlock):
-    return cacheSize / (wordsPerBlock * 4.0)
+    return math.floor(cacheSize / (wordsPerBlock * 4.0))
 
 # typeC = 0 for Direct mapped and 1 for N-way
 # Returns integer, -1 if Direct Mapped
 def numSets(numBlocks, N, typeC):
     if typeC:
-        return numBlocks / N
+        return math.floor(numBlocks / N)
     return -1    
 
 # numBlocks has to be numSets for the Set associative case
@@ -23,4 +23,4 @@ def addressType(wordsPerBlock, numBlocks):
 
 # Returns double
 def realSize(cacheSize, numBlocks, tagSize, statusSize):
-    return cacheSize + numBlocks * (tagSize + statusSize) / 8
+    return math.floor(cacheSize + numBlocks * (tagSize + statusSize) / 8)
