@@ -4,10 +4,13 @@ import buildCache
 def promt_word_address(cache):
     address = input("Enter Word Address, c(lear), q(uit): ")
     if address == "c":
-        cache = buildCache.input_block_in_cache(cache)
-        return True
+        cache = clear(cache)
+        return cache
     elif address == 'q':
-        return False
+        return 0
+    else:
+        return cache.input_block_in_cache(address)
+        
     
 # Set all values in cache to zero
 def clear(cache):
@@ -23,8 +26,8 @@ def main():
     loop = True
     cache = buildCache.start()
     print(cache)
-    # while (loop):
-    #     loop = promt_word_address(cache)
+    while (loop):
+        loop = promt_word_address(cache)
     
 
 if __name__ == "__main__":
