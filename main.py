@@ -14,7 +14,8 @@ def promt_word_address(cache):
     
 # Set all values in cache to zero
 def clear(cache):
-    for i in cache:
+    # TODO fix clearing
+    for i in cache.cache.size():
         for j in i:
             cache[i][j] = 0
     return cache

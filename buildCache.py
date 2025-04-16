@@ -108,10 +108,11 @@ class Cache:
         self.cache = cache
 
     def input_block_in_cache(self, block):
+        # TODO - Implement logic for adding blocks to cache based on mapping policy
         if self.cache_type == 0:
-            return
+            print(f"Addded {block}", block)
         else:
-            return 
+            print(f"Addded {block}", block)
 
     def __str__(self):
         return f"Cache Type: {self.cache_type}, Size: {self.size}, Words per Block: {self.words_per_block}, Number of Blocks: {self.num_blocks}, Number of Ways: {self.num_ways}, Number of Sets: {self.num_sets}"
