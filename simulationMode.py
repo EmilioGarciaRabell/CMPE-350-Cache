@@ -1,4 +1,4 @@
-import math.random as random
+import random as random
 
 ## prompts the user for number of word addresses to generate
 ## then generates random word addresses between 0 and num_word_addr*5
