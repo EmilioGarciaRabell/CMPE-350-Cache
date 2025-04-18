@@ -1,4 +1,3 @@
-
 #-------------------------------------------------------------------
 # Prompt the user for cache size and words per block
 #-------------------------------------------------------------------
@@ -49,8 +48,8 @@ def get_word_address(cache):
     address = input("Enter Word Address, c(lear), q(uit): ")
     
     if address == "c":
-        cache = cache.clear()
-        return cache
+        cache = cache.clear_cache()
+        return 1
     elif address == 'q':
         return 0
     elif address.isdigit():
