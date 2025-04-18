@@ -55,7 +55,6 @@ class Cache:
         self.misses = misses
 
     def input_block_in_cache(self, block):
-        # TODO - Implement logic for adding blocks to cache based on mapping policy
 
         index = math.floor(block / self.words_per_block)
                 
@@ -69,7 +68,6 @@ class Cache:
                 self.misses += 1
             else:
                 # if not empty, check if the block is already in the cache - hit
-
                 if self.cache[index % self.num_blocks] == index:
                     print(f"Hit {index}")
                     self.hits += 1
@@ -81,27 +79,33 @@ class Cache:
         else:
 
             # Set associative case
-            # check if the index is empty
-            # check if the block is already in the cache - hit
 
-            if self.cache[index % self.num_sets] == -1:
-                # if empty, add block to cache
-                self.cache[index % self.num_sets] = index
-                print(f"Added {index}")
-                self.misses += 1
-            else:
-                # if not empty, check if the block is already in the cache - hit
-                if self.cache[index % self.num_sets] == index:
-                    print(f"Hit {index}")
+            # Loop through each way in the set
+            for i in range(self.num_ways):
+
+                # Check if there are any hits first, if not check for empty spaces
+                if self.cache[index % self.num_sets][i] == index:
+                    # Print if hit
+                    print(f"Hit {index}, Position: {i}")
                     self.hits += 1
-                else:
-                    # if not, replace the block in the cache
-                    self.cache[index % self.num_sets] = index
-                    print(f"Replaced {index}")
+                    return 1
+                elif self.cache[index % self.num_sets][i] == -1:
+                    # if empty, add block to cache
+                    self.cache[index % self.num_sets][i] = index
+                    print(f"Added {index}, Position: {i}")
                     self.misses += 1
+                    return 1
+            
+            # After checking for hits or empty spaces, replace the first position in the set
+            # TODO: Change replacement policy
+            self.cache[index % self.num_sets][0] = index
+            print(f"Replaced {index}, Position: 0")
+            self.misses += 1
         return 1
     
     def create_cache(self):
+        self.hits = 0
+        self.misses = 0
         self.cache = []
         if (self.cache_type == 0): # Direct Mapped
             for i in range(self.num_blocks):
@@ -110,9 +114,9 @@ class Cache:
             self.num_sets = -1
             
         else: # Set Associative
-            for i in range(self.num_ways ):
+            for i in range(self.num_sets ):
                 self.cache.append([])
-                for j in range(self.num_sets):
+                for j in range(self.num_ways):
                     self.cache[i].append(-1)
         print(self)
 
@@ -121,12 +125,13 @@ class Cache:
 
     def get_word_in_block(self, block):
 
-        # index = math.floor(block / self.words_per_block)
-        # if self.cache[index % self.num_blocks] == -1:
-        #     return ""
+        # If the block is empty, don't return anything
+        if block == -1:
+            return ""
 
         wordOffset = block * self.words_per_block
         string = "b" + str(block) + "("
+        
         for i in range(self.words_per_block):
             string += "w" + str(wordOffset + i) + ", "
 
@@ -138,9 +143,14 @@ class Cache:
     
     def print_cache(self):
         print("Cache:")
-        # if self.cache_type == 0: # Direct Mapped
-        for i in range(self.num_blocks):
-            if self.cache[i] == -1:
-                print(f"Block {i}: ")
-                continue
-            print(f"Block {i}: {self.get_word_in_block(self.cache[i])}")
+        string = ""
+        if self.cache_type == 0: # Direct Mapped
+            for i in range(self.num_blocks):
+                string = self.get_word_in_block(self.cache[i])
+                print(f"Block {i}: {string}")
+        else: # Set associative
+            for i in range(self.num_sets):
+                string = ""
+                for j in range(self.num_ways):
+                    string += (self.get_word_in_block(self.cache[i][j]) + "\t")
+                print(f"Block {i}: {string}")

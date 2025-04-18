@@ -10,7 +10,7 @@ def get_nominal():
         return nominal_size
     except ValueError:
         print("Invalid input. Please enter a valid integer for cache size.")
-        get_nominal()
+        return get_nominal()
 
 def get_words_per_block():
     # prompt user to provide words per block
@@ -19,7 +19,7 @@ def get_words_per_block():
         return words_per_block 
     except ValueError:
         print("Invalid input. Please enter a valid integer for words per block.")
-        get_words_per_block()
+        return get_words_per_block()
 
 # Determine the type of mapping policy 0 for for Direct Mapped, 1 for Set Associative
 def get_mapping_policy():
@@ -32,7 +32,7 @@ def get_mapping_policy():
         return 1 
     else:
         print("Invalid mapping policy. Please enter 'DM' or 'SA'. Try again")
-        get_mapping_policy()
+        return get_mapping_policy()
 
 def get_number_ways():
     # prompt user to provide number of ways
@@ -41,7 +41,7 @@ def get_number_ways():
         return num_ways
     except ValueError:
         print("Invalid input. Please enter a valid integer for number of ways.")
-        get_number_ways()
+        return get_number_ways()
 
 
 def get_word_address(cache):
@@ -56,7 +56,7 @@ def get_word_address(cache):
         return cache.input_block_in_cache(int(address))
     else:
         print("Invalid input. Please enter a valid word address, 'c' to clear, or 'q' to quit.")
-        get_word_address(cache)
+        return get_word_address(cache)
     
 def get_mode():
     mode = input("Enter mode (s(imulation) or i(nput)): ").strip().lower()
@@ -67,4 +67,4 @@ def get_mode():
         return 1 
     else:
         print("Invalid mode. Please enter 's' or 'i'.")
-        get_mode()
+        return get_mode()
