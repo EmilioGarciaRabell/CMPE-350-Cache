@@ -50,7 +50,7 @@ def get_word_address(cache):
     address = input("Enter Word Address, c(lear), q(uit): ")
     if address == "c":
         cache = cache.clear_cache()
-        return cache
+        return 1
     elif address == 'q':
         return 0
     elif address.isdigit() and int(address) < cache.size:
