@@ -29,7 +29,7 @@ def start():
         num_sets = -1
     else: # Set Associative
         num_ways = prompt.get_number_ways()
-        num_blocks = math.floor(num_blocks / num_ways)
+        # num_blocks = math.floor(num_blocks / num_ways)
         num_sets = calculateSize.numSets(num_blocks, num_ways, typeC)
 
     # Create cache based on mapping policy
@@ -56,27 +56,51 @@ class Cache:
 
     def input_block_in_cache(self, block):
         # TODO - Implement logic for adding blocks to cache based on mapping policy
+
+        index = math.floor(block / self.words_per_block)
+        print(index % self.num_blocks)
+        
         if self.cache_type == 0:
             # check if the index is empty
             # check if the block is already in the cache - hit
-            if self.cache[block] == -1:
+            if self.cache[index % self.num_blocks] == -1:
                 # if empty, add block to cache
-                self.cache[block] = block
-                print(f"Addded {block}", block)
+                self.cache[index % self.num_blocks] = index
+                print(f"Added {index}", index)
                 self.misses += 1
             else:
                 # if not empty, check if the block is already in the cache - hit
 
-                if self.cache[block] == block:
-                    print(f"Hit {block}", block)
+                if self.cache[index % self.num_blocks] == index:
+                    print(f"Hit {index}", index)
                     self.hits += 1
                 else:
                     # if not, replace the block in the cache
-                    self.cache[block] = block
-                    print(f"Replaced {block}", block)
+                    self.cache[index % self.num_blocks] = index
+                    print(f"Replaced {index}", index)
                     self.misses += 1
         else:
-            print(f"Addded {block}", block)
+
+            # Set associative case
+            # check if the index is empty
+            # check if the block is already in the cache - hit
+
+            if self.cache[index % self.num_sets] == -1:
+                # if empty, add block to cache
+                self.cache[index % self.num_sets] = index
+                print(f"Added {index}", index)
+                self.misses += 1
+            else:
+                # if not empty, check if the block is already in the cache - hit
+
+                if self.cache[index % self.num_sets] == index:
+                    print(f"Hit {index}", index)
+                    self.hits += 1
+                else:
+                    # if not, replace the block in the cache
+                    self.cache[index % self.num_sets] = index
+                    print(f"Replaced {index}", index)
+                    self.misses += 1
     
     def create_cache(self):
         self.cache = []

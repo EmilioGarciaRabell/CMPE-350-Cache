@@ -9,7 +9,7 @@ def promt_word_address(cache):
     elif address == 'q':
         return 0
     else:
-        return cache.input_block_in_cache(address)
+        return cache.input_block_in_cache(int(address))
         
     
 # Set all values in cache to zero
