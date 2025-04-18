@@ -119,7 +119,6 @@ class Cache:
                 self.cache.append([])
                 for j in range(self.num_ways):
                     self.cache[i].append(-1)
-        print(self)
 
     ## clears the cache by creating a new empty cache
     def clear_cache(self):
@@ -166,5 +165,6 @@ class Cache:
             for i in range(self.num_sets):
                 string = ""
                 for j in range(self.num_ways):
-                    string += (self.get_word_in_block(self.cache[i][j]) + "\t")
+                    block_string = (self.get_word_in_block(self.cache[i][j]))
+                    string += f"{block_string:<30}"
                 print(f"\tBlock {i}: {string}")

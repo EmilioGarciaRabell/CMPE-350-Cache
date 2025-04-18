@@ -61,7 +61,7 @@ def get_word_address(cache):
     
 # Prompt user for mode of operation (simulation or input)
 def get_mode():
-    mode = input("Enter mode (s(imulation) or i(nput)): ").strip().lower()
+    mode = input("Enter mode s(imulation) or i(nput): ").strip().lower()
     
     if mode == "s":
         return 0

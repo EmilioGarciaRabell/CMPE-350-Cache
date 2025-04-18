@@ -19,8 +19,8 @@ def generateWordAddresses(cache):
 def simulation(cache):
     randomAddresses = generateWordAddresses(cache)
     for address in randomAddresses:
+        print(f"Checking address {address} in cache...")
         cache.input_block_in_cache(address)
-    # print cache
-    cache.print_cache()
+        cache.print_cache()
     # calculate and print hit and miss rate
     calc.calculate_hit_miss_rate(cache)
