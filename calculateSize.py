@@ -44,9 +44,7 @@ def calculate_miss_rate (misses, num_word_addr):
 ## prints the hit and miss rate
 def calculate_hit_miss_rate(cache):
     total_accesses = cache.hits + cache.misses
-    # calculate hit and miss rate
     hit_rate = calculate_hit_rate(cache.hits, total_accesses)
     miss_rate = calculate_miss_rate(cache.misses, total_accesses)
-    # print hit and miss rate
     print(f"Final Hit Rate: {hit_rate}%")
     print(f"Final Miss Rate: {miss_rate}%")

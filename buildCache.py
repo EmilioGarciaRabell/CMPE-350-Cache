@@ -3,16 +3,15 @@
 # Module creates a cache with mapping policy determined by user input
 #--------------------------------------------------------------------
 
-
 import calculateSize
 import promptUser as prompt
 import math
-
 
 #-------------------------------------------------------------------
 # Create cache
 #-------------------------------------------------------------------
 
+## prompts user for cache size, words per block, and mapping policy.
 def start():
     # Prompt user for cache size and words per block
     nominal_size = prompt.get_nominal()
@@ -35,13 +34,13 @@ def start():
     # Create cache based on mapping policy
     return create_cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num_sets)
 
-
+## creates the cache based on user input
 def create_cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num_sets):  
     cache = Cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num_sets, None)
     cache.create_cache()
     return cache
 
-
+## creates a cache object 
 class Cache:
     def __init__(self, cache_type, size, words_per_block, num_blocks, num_ways, num_sets, cache,hits=0,misses=0):
         self.cache_type = cache_type
@@ -54,6 +53,7 @@ class Cache:
         self.hits = hits
         self.misses = misses
 
+    ## checks if the block is in the cache
     def input_block_in_cache(self, block):
 
         index = math.floor(block / self.words_per_block)
@@ -103,6 +103,7 @@ class Cache:
             self.misses += 1
         return 1
     
+    ## creates the cache, hits and misses set to 0
     def create_cache(self):
         self.hits = 0
         self.misses = 0
@@ -120,9 +121,11 @@ class Cache:
                     self.cache[i].append(-1)
         print(self)
 
+    ## clears the cache by creating a new empty cache
     def clear_cache(self):
         self.create_cache()
 
+    ## returns the word in the block
     def get_word_in_block(self, block):
 
         # If the block is empty, don't return anything
@@ -138,9 +141,11 @@ class Cache:
         string = string[:-2] + ")"
         return string
 
+    ## returns the string representation of cache attributes
     def __str__(self):
         return f"Cache Type: {self.cache_type}, Size: {self.size}, Words per Block: {self.words_per_block}, Number of Blocks: {self.num_blocks}, Number of Ways: {self.num_ways}, Number of Sets: {self.num_sets}"
     
+    ## prints the cache contents
     def print_cache(self):
         print("Cache:")
         string = ""
