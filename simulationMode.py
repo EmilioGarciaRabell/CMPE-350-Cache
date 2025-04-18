@@ -1,5 +1,5 @@
 import random as random
-import calculateSize 
+import calculateSize as calc
 
 ## prompts the user for number of word addresses to generate
 ## then generates random word addresses between 0 and num_word_addr*5
@@ -20,7 +20,8 @@ def simulation(cache):
     randomAddresses = generateWordAddresses()
     for address in randomAddresses:
         cache.input_block_in_cache(address)
-    hit_rate = calculateSize.calculate_hit_rate(cache.hits, len(randomAddresses))
-    miss_rate = calculateSize.calculate_miss_rate(cache.misses, len(randomAddresses))
-    print(f"Hit rate: {hit_rate}%")
-    print(f"Miss rate: {miss_rate}%")
+    # print cache
+    print("Final Cache:")
+    cache.print_cache()
+    # calculate and print hit and miss rate
+    calc.calculate_hit_miss_rate(cache)

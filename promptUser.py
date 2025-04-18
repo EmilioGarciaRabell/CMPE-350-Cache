@@ -48,7 +48,6 @@ def get_number_ways():
 # Prompt user to provide word address to check in cache
 def get_word_address(cache):
     address = input("Enter Word Address, c(lear), q(uit): ")
-    
     if address == "c":
         cache = cache.clear_cache()
         return cache

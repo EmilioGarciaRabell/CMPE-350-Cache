@@ -64,17 +64,17 @@ class Cache:
             if self.cache[index % self.num_blocks] == -1:
                 # if empty, add block to cache
                 self.cache[index % self.num_blocks] = index
-                print(f"Added {index}")
+                print(f"Added block {index}")
                 self.misses += 1
             else:
                 # if not empty, check if the block is already in the cache - hit
                 if self.cache[index % self.num_blocks] == index:
-                    print(f"Hit {index}")
+                    print(f"Hit block {index}")
                     self.hits += 1
                 else:
                     # if not, replace the block in the cache
                     self.cache[index % self.num_blocks] = index
-                    print(f"Replaced {index}")
+                    print(f"Replaced with block {index}")
                     self.misses += 1
         else:
 
@@ -86,20 +86,20 @@ class Cache:
                 # Check if there are any hits first, if not check for empty spaces
                 if self.cache[index % self.num_sets][i] == index:
                     # Print if hit
-                    print(f"Hit {index}, Position: {i}")
+                    print(f"Hit block {index}, Position: {i}")
                     self.hits += 1
                     return 1
                 elif self.cache[index % self.num_sets][i] == -1:
                     # if empty, add block to cache
                     self.cache[index % self.num_sets][i] = index
-                    print(f"Added {index}, Position: {i}")
+                    print(f"Added block {index}, Position: {i}")
                     self.misses += 1
                     return 1
             
             # After checking for hits or empty spaces, replace the first position in the set
             # TODO: Change replacement policy
             self.cache[index % self.num_sets][0] = index
-            print(f"Replaced {index}, Position: 0")
+            print(f"Replaced with block {index}, Position: 0")
             self.misses += 1
         return 1
     
@@ -147,10 +147,10 @@ class Cache:
         if self.cache_type == 0: # Direct Mapped
             for i in range(self.num_blocks):
                 string = self.get_word_in_block(self.cache[i])
-                print(f"Block {i}: {string}")
+                print(f"\tBlock {i}: {string}")
         else: # Set associative
             for i in range(self.num_sets):
                 string = ""
                 for j in range(self.num_ways):
                     string += (self.get_word_in_block(self.cache[i][j]) + "\t")
-                print(f"Block {i}: {string}")
+                print(f"\tBlock {i}: {string}")
