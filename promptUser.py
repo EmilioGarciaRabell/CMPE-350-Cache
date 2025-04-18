@@ -31,3 +31,13 @@ def get_number_ways():
     # prompt user to provide number of ways
     num_ways = int(input("Enter number of ways: "))
     return num_ways
+
+def get_word_address(cache):
+    address = input("Enter Word Address, c(lear), q(uit): ")
+    if address == "c":
+        cache = cache.clear()
+        return cache
+    elif address == 'q':
+        return 0
+    else:
+        return cache.input_block_in_cache(int(address))
