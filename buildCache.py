@@ -114,9 +114,24 @@ class Cache:
                 self.cache.append([])
                 for i in range(self.num_sets):
                     self.cache[i].append(-1)
+        print(self)
 
     def clear_cache(self):
         self.create_cache()
+
+    def get_word_in_block(self, block):
+
+        # index = math.floor(block / self.words_per_block)
+        # if self.cache[index % self.num_blocks] == -1:
+        #     return ""
+
+        wordOffset = block * self.words_per_block
+        string = "b" + str(block) + "("
+        for i in range(self.words_per_block):
+            string += "w" + str(wordOffset + i) + ", "
+
+        string = string[:-2] + ")"
+        return string
 
     def __str__(self):
         return f"Cache Type: {self.cache_type}, Size: {self.size}, Words per Block: {self.words_per_block}, Number of Blocks: {self.num_blocks}, Number of Ways: {self.num_ways}, Number of Sets: {self.num_sets}"
@@ -125,6 +140,9 @@ class Cache:
         print("Cache:")
         if self.cache_type == 0: # Direct Mapped
             for i in range(self.num_blocks):
-                print(f"Block {i}: {self.cache[i]}")
-        else: # Set Associative
-            continue
+                if self.cache[i] == -1:
+                    print(f"Block {i}: ")
+                    continue
+                print(f"Block {i}: {self.get_word_in_block(self.cache[i])}")
+        # else: # Set Associative
+        #     continue
