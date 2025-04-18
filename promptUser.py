@@ -13,6 +13,7 @@ def get_nominal():
         print("Invalid input. Please enter a valid integer for cache size.")
         get_nominal()
 
+# Prompt user to provide words per block
 def get_words_per_block():
     # prompt user to provide words per block
     try:
@@ -35,6 +36,7 @@ def get_mapping_policy():
         print("Invalid mapping policy. Please enter 'DM' or 'SA'. Try again")
         get_mapping_policy()
 
+# Prompt user to provide number of ways for Set Associative mapping policy
 def get_number_ways():
     # prompt user to provide number of ways
     try:
@@ -44,12 +46,12 @@ def get_number_ways():
         print("Invalid input. Please enter a valid integer for number of ways.")
         get_number_ways()
 
-
+# Prompt user to provide word address to check in cache
 def get_word_address(cache):
     address = input("Enter Word Address, c(lear), q(uit): ")
     
     if address == "c":
-        cache = cache.clear()
+        cache = cache.clear_cache()
         return cache
     elif address == 'q':
         return 0
@@ -59,6 +61,7 @@ def get_word_address(cache):
         print("Invalid input. Please enter a valid word address, 'c' to clear, or 'q' to quit.")
         get_word_address(cache)
     
+# Prompt user for mode of operation (simulation or input)
 def get_mode():
     mode = input("Enter mode (s(imulation) or i(nput)): ").strip().lower()
     
