@@ -6,13 +6,21 @@
 # Prompt user to provide cache size in Bytes
 def get_nominal():
     # prompt user to provide nominal size in Bytes
-    nominal_size = int(input("Enter nominal size in Bytes: "))
-    return nominal_size
+    try:
+        nominal_size = int(input("Enter nominal size in Bytes: "))
+        return nominal_size
+    except ValueError:
+        print("Invalid input. Please enter a valid integer for cache size.")
+        get_nominal()
 
 def get_words_per_block():
     # prompt user to provide words per block
-    words_per_block = int(input("Enter number of words per block: "))
-    return words_per_block 
+    try:
+        words_per_block = int(input("Enter number of words per block: "))
+        return words_per_block 
+    except ValueError:
+        print("Invalid input. Please enter a valid integer for words per block.")
+        get_words_per_block()
 
 # Determine the type of mapping policy 0 for for Direct Mapped, 1 for Set Associative
 def get_mapping_policy():
@@ -29,25 +37,35 @@ def get_mapping_policy():
 
 def get_number_ways():
     # prompt user to provide number of ways
-    num_ways = int(input("Enter number of ways: "))
-    return num_ways
+    try:
+        num_ways = int(input("Enter number of ways: "))
+        return num_ways
+    except ValueError:
+        print("Invalid input. Please enter a valid integer for number of ways.")
+        get_number_ways()
+
 
 def get_word_address(cache):
     address = input("Enter Word Address, c(lear), q(uit): ")
+    
     if address == "c":
         cache = cache.clear()
         return cache
     elif address == 'q':
         return 0
-    else:
+    elif address.isdigit():
         return cache.input_block_in_cache(int(address))
+    else:
+        print("Invalid input. Please enter a valid word address, 'c' to clear, or 'q' to quit.")
+        get_word_address(cache)
     
 def get_mode():
     mode = input("Enter mode (s(imulation) or i(nput)): ").strip().lower()
+    
     if mode == "s":
         return 0
     elif mode == "i":
         return 1 
     else:
         print("Invalid mode. Please enter 's' or 'i'.")
-        return None
+        get_mode()
