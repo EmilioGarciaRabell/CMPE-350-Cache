@@ -14,11 +14,13 @@ def numSets(numBlocks, N, typeC):
 # numBlocks has to be numSets for the Set associative case
 # typeC = 0 for Direct mapped and 1 for N-way
 # Returns tuple [size(tag), size(index), size(offset)]
-def addressType(wordsPerBlock, numBlocks):
-    indexSize = math.log2(numBlocks)
-    offsetSize = wordsPerBlock * 4
+def addressType(wordsPerBlock, numBlocks, numSets, typeC):
+    if typeC == 0:  # Direct Mapped
+        indexSize = int(math.log2(numBlocks))
+    else:   # N-way Set Associative
+        indexSize = int(math.log2(numSets))
+    offsetSize = int(math.log2(wordsPerBlock * 4))
     tagSize = 32 - indexSize - offsetSize
-
     return [tagSize, indexSize, offsetSize]
 
 # Returns double

@@ -27,9 +27,9 @@ def get_mapping_policy():
     # prompt user to enter mapping policy
     mapping_policy = input("Enter mapping policy (DM or SA): ").strip().lower()
 
-    if mapping_policy == "dm":
+    if mapping_policy == "dm" or mapping_policy == "DM":
         return 0
-    elif mapping_policy == "sa":
+    elif mapping_policy == "sa" or mapping_policy == "SA":
         return 1 
     else:
         print("Invalid mapping policy. Please enter 'DM' or 'SA'. Try again")

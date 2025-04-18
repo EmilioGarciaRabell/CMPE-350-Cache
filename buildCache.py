@@ -143,7 +143,16 @@ class Cache:
 
     ## returns the string representation of cache attributes
     def __str__(self):
-        return f"Cache Type: {self.cache_type}, Size: {self.size}, Words per Block: {self.words_per_block}, Number of Blocks: {self.num_blocks}, Number of Ways: {self.num_ways}, Number of Sets: {self.num_sets}"
+        addressType = calculateSize.addressType(self.words_per_block, self.num_blocks, self.num_sets, self.cache_type)
+        tagSize = addressType[0]
+        indexSize = addressType[1]
+        offsetSize = addressType[2]
+        realSize = calculateSize.realSize(self.size, self.num_blocks, tagSize, 1) # status size is 1 byte
+        print("Cache Details:")
+        if self.cache_type == 0: # Direct Mapped
+            return (f"\tCache Type : Direct Mapped \n\tNumber of Blocks: {self.num_blocks} \n\tTag Size: {tagSize} \n\tIndex Size: {indexSize} \n\tOffset Size: {offsetSize} \n\tReal Size: {realSize} bytes")
+        else: # Set Associative 
+            return (f"\tCache Type : Set Associative \n\tNumber of Blocks: {self.num_blocks} \n\tNumber of Sets: {self.num_sets} \n\tTag Size: {tagSize} \n\tIndex Size: {indexSize} \n\tOffset Size: {offsetSize} \n\tReal Size: {realSize} bytes")
     
     ## prints the cache contents
     def print_cache(self):
