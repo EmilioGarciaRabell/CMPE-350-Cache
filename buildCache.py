@@ -38,7 +38,7 @@ def start():
 
 def create_cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num_sets):  
     cache = Cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num_sets, None)
-    cache.create_cache
+    cache.create_cache()
     return cache
 
 
@@ -58,26 +58,25 @@ class Cache:
         # TODO - Implement logic for adding blocks to cache based on mapping policy
 
         index = math.floor(block / self.words_per_block)
-        print(index % self.num_blocks)
-        
+                
         if self.cache_type == 0:
             # check if the index is empty
             # check if the block is already in the cache - hit
             if self.cache[index % self.num_blocks] == -1:
                 # if empty, add block to cache
                 self.cache[index % self.num_blocks] = index
-                print(f"Added {index}", index)
+                print(f"Added {index}")
                 self.misses += 1
             else:
                 # if not empty, check if the block is already in the cache - hit
 
                 if self.cache[index % self.num_blocks] == index:
-                    print(f"Hit {index}", index)
+                    print(f"Hit {index}")
                     self.hits += 1
                 else:
                     # if not, replace the block in the cache
                     self.cache[index % self.num_blocks] = index
-                    print(f"Replaced {index}", index)
+                    print(f"Replaced {index}")
                     self.misses += 1
         else:
 
@@ -88,19 +87,19 @@ class Cache:
             if self.cache[index % self.num_sets] == -1:
                 # if empty, add block to cache
                 self.cache[index % self.num_sets] = index
-                print(f"Added {index}", index)
+                print(f"Added {index}")
                 self.misses += 1
             else:
                 # if not empty, check if the block is already in the cache - hit
-
                 if self.cache[index % self.num_sets] == index:
-                    print(f"Hit {index}", index)
+                    print(f"Hit {index}")
                     self.hits += 1
                 else:
                     # if not, replace the block in the cache
                     self.cache[index % self.num_sets] = index
-                    print(f"Replaced {index}", index)
+                    print(f"Replaced {index}")
                     self.misses += 1
+        return 1
     
     def create_cache(self):
         self.cache = []
