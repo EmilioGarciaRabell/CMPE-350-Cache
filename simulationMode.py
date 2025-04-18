@@ -2,6 +2,7 @@ import random as random
 import calculateSize 
 import buildCache
 
+
 ## prompts the user for number of word addresses to generate
 ## then generates random word addresses between 0 and num_word_addr*5
 ## returns array list of random addresses 
@@ -15,8 +16,7 @@ def generateWordAddresses():
         randomAddresses.append(wordAddress)
     return randomAddresses
 
-def simulation():
-    cache = buildCache.start()
+def simulation(cache):
     randomAddresses = generateWordAddresses()
     for address in randomAddresses:
         cache.input_block_in_cache(address)

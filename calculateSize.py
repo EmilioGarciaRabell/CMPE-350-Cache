@@ -31,11 +31,11 @@ def realSize(cacheSize, numBlocks, tagSize, statusSize):
 def calculate_hit_rate (hits, num_word_addr):
     if num_word_addr == 0:
         return 0
-    return (hits / num_word_addr) * 100
+    return round(((hits / num_word_addr) * 100),2)
 
 ## calculates the miss rate based off misses and num_word_addr (total accesses)
 ## returns a float value (percentage)
 def calculate_miss_rate (misses, num_word_addr):
     if num_word_addr == 0:
         return 0
-    return (misses / num_word_addr) * 100
+    return round(((misses / num_word_addr) * 100), 2)

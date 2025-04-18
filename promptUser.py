@@ -24,8 +24,8 @@ def get_mapping_policy():
     elif mapping_policy == "sa":
         return 1 
     else:
-        print("Invalid mapping policy. Please enter 'DM' or 'SA'.")
-        return None
+        print("Invalid mapping policy. Please enter 'DM' or 'SA'. Try again")
+        get_mapping_policy()
 
 def get_number_ways():
     # prompt user to provide number of ways
@@ -41,3 +41,13 @@ def get_word_address(cache):
         return 0
     else:
         return cache.input_block_in_cache(int(address))
+    
+def get_mode():
+    mode = input("Enter mode (s(imulation) or i(nput)): ").strip().lower()
+    if mode == "s":
+        return 0
+    elif mode == "i":
+        return 1 
+    else:
+        print("Invalid mode. Please enter 's' or 'i'.")
+        return None

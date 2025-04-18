@@ -120,3 +120,11 @@ class Cache:
 
     def __str__(self):
         return f"Cache Type: {self.cache_type}, Size: {self.size}, Words per Block: {self.words_per_block}, Number of Blocks: {self.num_blocks}, Number of Ways: {self.num_ways}, Number of Sets: {self.num_sets}"
+    
+    def print_cache(self):
+        print("Cache:")
+        if self.cache_type == 0: # Direct Mapped
+            for i in range(self.num_blocks):
+                print(f"Block {i}: {self.cache[i]}")
+        else: # Set Associative
+            continue
