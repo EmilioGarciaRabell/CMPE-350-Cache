@@ -1,4 +1,6 @@
 import random as random
+import calculateSize 
+import buildCache
 
 ## prompts the user for number of word addresses to generate
 ## then generates random word addresses between 0 and num_word_addr*5
@@ -13,16 +15,12 @@ def generateWordAddresses():
         randomAddresses.append(wordAddress)
     return randomAddresses
 
-## calculates the hit rate based off hits and num_word_addr (total accesses)
-## returns a float value (percentage)
-def calculate_hit_rate (hits, num_word_addr):
-    if num_word_addr == 0:
-        return 0
-    return (hits / num_word_addr) * 100
-
-## calculates the miss rate based off misses and num_word_addr (total accesses)
-## returns a float value (percentage)
-def calculate_miss_rate (misses, num_word_addr):
-    if num_word_addr == 0:
-        return 0
-    return (misses / num_word_addr) * 100
+def simulation():
+    cache = buildCache.start()
+    randomAddresses = generateWordAddresses()
+    for address in randomAddresses:
+        cache.input_block_in_cache(address)
+    hit_rate = calculateSize.calculate_hit_rate(cache.hits, len(randomAddresses))
+    miss_rate = calculateSize.calculate_miss_rate(cache.misses, len(randomAddresses))
+    print(f"Hit rate: {hit_rate}%")
+    print(f"Miss rate: {miss_rate}%")
