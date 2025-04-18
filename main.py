@@ -1,5 +1,5 @@
 #----------------------------------------------------------
-# Author:  Lila Wolf, Colde Brindisi, Emilio Garcia Rabell
+# Author:  Lila Wolfanger, Colde Brindisi, Emilio Garcia Rabell
 # Date:    2023-10-23
 # This program prmotps the user for details to create cache 
 # the 
@@ -22,8 +22,6 @@ def main():
             # print hits and misses
             print(f"Cache Hits: {cache.hits}")
             print(f"Cache Misses: {cache.misses}")
-            
-    
 
     
 
