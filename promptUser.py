@@ -53,7 +53,7 @@ def get_word_address(cache):
         return cache
     elif address == 'q':
         return 0
-    elif address.isdigit():
+    elif address.isdigit() and address < cache.size:
         return cache.input_block_in_cache(int(address))
     else:
         print("Invalid input. Please enter a valid word address, 'c' to clear, or 'q' to quit.")
