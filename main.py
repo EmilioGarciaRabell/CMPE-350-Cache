@@ -22,7 +22,7 @@ def main():
             # print hits and misses
             print(f"Cache Hits: {cache.hits}")
             print(f"Cache Misses: {cache.misses}")
-        cache.print_cache()
+            cache.print_cache()
             
     
 

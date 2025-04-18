@@ -110,9 +110,9 @@ class Cache:
             self.num_sets = -1
             
         else: # Set Associative
-            for i in range(self.num_ways):
+            for i in range(self.num_ways ):
                 self.cache.append([])
-                for i in range(self.num_sets):
+                for j in range(self.num_sets):
                     self.cache[i].append(-1)
         print(self)
 
@@ -138,11 +138,9 @@ class Cache:
     
     def print_cache(self):
         print("Cache:")
-        if self.cache_type == 0: # Direct Mapped
-            for i in range(self.num_blocks):
-                if self.cache[i] == -1:
-                    print(f"Block {i}: ")
-                    continue
-                print(f"Block {i}: {self.get_word_in_block(self.cache[i])}")
-        # else: # Set Associative
-        #     continue
+        # if self.cache_type == 0: # Direct Mapped
+        for i in range(self.num_blocks):
+            if self.cache[i] == -1:
+                print(f"Block {i}: ")
+                continue
+            print(f"Block {i}: {self.get_word_in_block(self.cache[i])}")
