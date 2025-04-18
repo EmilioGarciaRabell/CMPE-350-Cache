@@ -1,17 +1,12 @@
+#----------------------------------------------------------
+# Author:  Lila Wolf, Colde Brindisi, Emilio Garcia Rabell
+# Date:    2023-10-23
+# This program prmotps the user for details to create cache 
+# the 
+
 import buildCache
 import promptUser as prompt
         
-    
-# Set all values in cache to zero
-# def clear(cache):
-#     # TODO fix clearing - implement in class
-#     for i in cache.cache.size():
-#         for j in i:
-#             cache[i][j] = 0
-#     return cache
-
-
-# Main user input loop
 
 def main():
     loop = True
@@ -19,6 +14,8 @@ def main():
     print(cache)
     while (loop):
         loop = prompt.get_word_address(cache)
+    
+
     
 
 if __name__ == "__main__":
