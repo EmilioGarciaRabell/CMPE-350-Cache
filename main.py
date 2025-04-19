@@ -13,7 +13,6 @@ def main():
     loop = True
     cache = buildCache.start()
     mode = prompt.get_mode()
-    print(cache)
 
     if mode == 0: # simulation mode
         sim.simulation(cache)

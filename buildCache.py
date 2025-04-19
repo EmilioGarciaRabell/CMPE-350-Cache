@@ -42,7 +42,7 @@ def create_cache(typeC, nominal_size, words_per_block, num_blocks, num_ways, num
 
 ## creates a cache object 
 class Cache:
-    def __init__(self, cache_type, size, words_per_block, num_blocks, num_ways, num_sets, cache,hits=0,misses=0):
+    def __init__(self, cache_type, size, words_per_block, num_blocks, num_ways, num_sets, cache,hits=0,misses=0, replacement_policy=[]):
         self.cache_type = cache_type
         self.size = size
         self.words_per_block = words_per_block
@@ -52,9 +52,11 @@ class Cache:
         self.cache = cache
         self.hits = hits
         self.misses = misses
-
+        self.replacement_policy = replacement_policy 
     ## checks if the block is in the cache
     def input_block_in_cache(self, block):
+        # add bloc to replacement policy list
+        self.replacement_policy.append(block)
 
         index = math.floor(block / self.words_per_block)
                 
@@ -98,6 +100,7 @@ class Cache:
             
             # After checking for hits or empty spaces, replace the first position in the set
             # TODO: Change replacement policy
+            # check replacement policy list for the first block to replace
             self.cache[index % self.num_sets][0] = index
             print(f"Replaced with block {index}, Position: 0")
             self.misses += 1
