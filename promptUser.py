@@ -1,3 +1,5 @@
+import calculateSize
+
 #-------------------------------------------------------------------
 # Prompt the user for cache size and words per block
 #-------------------------------------------------------------------
@@ -53,7 +55,7 @@ def get_word_address(cache):
         return 1
     elif address == 'q':
         return 0
-    elif address.isdigit() and int(address) < cache.size:
+    elif calculateSize.is_valid_address(cache.size, address):
         return cache.input_block_in_cache(int(address))
     else:
         print("Invalid input. Please enter a valid word address, 'c' to clear, or 'q' to quit.")

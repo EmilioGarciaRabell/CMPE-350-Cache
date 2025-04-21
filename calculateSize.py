@@ -50,3 +50,14 @@ def calculate_hit_miss_rate(cache):
     miss_rate = calculate_miss_rate(cache.misses, total_accesses)
     print(f"Final Hit Rate: {hit_rate}%")
     print(f"Final Miss Rate: {miss_rate}%")
+
+# return if an address is valid or not
+def is_valid_address(size,address_str):
+    try:
+        address = int(address_str)
+        if address >= 0 and address < size:
+            return True
+        else:
+            return False
+    except ValueError:
+        return False
