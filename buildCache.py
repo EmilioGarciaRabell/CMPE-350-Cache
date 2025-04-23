@@ -202,8 +202,12 @@ class Cache:
                     else:
                         # Shorten the block representation if needed
                         if len(block_content) > 20:
-                            short_content = block_content.split('(')[0] + "(...)"
+                            block_number = block_content.split('(')[0]
+                            word_range = block_content.split('(')[1].split(')')[0]
+                            first_word, last_word = word_range.split(', ')[0], word_range.split(', ')[-1]
+                            short_content = f"{block_number}({first_word}-{last_word})"
                             ways.append(f"{short_content:<{max_way_len}}")
+                   
                         else:
                             ways.append(f"{block_content:<{max_way_len}}")
                 
