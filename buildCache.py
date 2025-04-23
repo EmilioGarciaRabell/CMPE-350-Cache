@@ -105,7 +105,7 @@ class Cache:
             # If no empty space, replace LRU block
             if lru_dict:
                 # Get the least recently used block (first item in OrderedDict)
-                lru_block, lru_pos = next(iter(lru_dict.items())) 
+                lru_block, lru_pos = next(iter(lru_dict.items()))  
                 current_set[lru_pos] = index
                 # Remove old block and add new one
                 lru_dict.pop(lru_block)
