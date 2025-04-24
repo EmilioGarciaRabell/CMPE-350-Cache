@@ -139,6 +139,7 @@ class Cache:
                     self.cache[i].append(-1)
             # Initialize replacement policy for set associative cache
             self.replacement_policy = [OrderedDict() for _ in range(self.num_sets)]
+        print(self)
 
     ## clears the cache by creating a new empty cache
     def clear_cache(self):
